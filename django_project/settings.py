@@ -33,7 +33,7 @@ ALLOWED_HOSTS = ['*']
 X_FRAME_OPTIONS = '*'
 
 # Application definition
-
+CRISPY_TEMPLATE_PACK = 'bootstrap3'
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'todo.apps.TodoConfig',
+    'crispy_forms'
 ]
 
 MIDDLEWARE = [
