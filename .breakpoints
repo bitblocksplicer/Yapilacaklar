@@ -1,0 +1,26 @@
+{
+  "files": {
+    "todo/templates/todo/index.html": [
+      {
+        "id": "49bdebba-b429-485c-bf11-8e12329b3540",
+        "line": 28,
+        "version": 106,
+        "index": 957
+      }
+    ],
+    "todo/views.py": [
+      {
+        "id": "cbba07df-fff5-4cda-a438-572d1a0dc2b4",
+        "line": 43,
+        "version": 867,
+        "index": 1465
+      },
+      {
+        "id": "0b31b56b-d898-4b79-8792-cdf588eedcb5",
+        "line": 44,
+        "version": 867,
+        "index": 1474
+      }
+    ]
+  }
+}

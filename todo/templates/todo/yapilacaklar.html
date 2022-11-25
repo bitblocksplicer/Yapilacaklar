@@ -1,0 +1,18 @@
+{% extends "todo/index.html" %}
+
+{% block yapcaklar %}      
+
+<h1>Yapilacaklar</h1>
+  {% if todo_listesi %}
+  <ul>
+    {% for yapilacak in todo_listesi %}
+      <li>
+        {{ yapilacak.baslik }}
+      </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+    <p>Yapılacaklar listesi boş.</p>
+  {% endif %}
+
+{% endblock %}

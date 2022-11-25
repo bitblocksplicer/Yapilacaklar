@@ -1,4 +1,4 @@
-{% extends "main/header.html" %}
+{% extends "todo/header.html" %}
 
 {% block content %} 
 
@@ -6,13 +6,13 @@
 
 <!--Register--> 
 <div class="container py-5">
-	<h1>Register</h1>
+	<h1>Kayıt ol</h1>
 	<form method="POST">
 		{% csrf_token %}
 		{{ register_form|crispy }}                    
-		<button class="btn btn-primary" type="submit">Register</button>
+		<button class="btn btn-primary" type="submit">Kayıt Ol</button>
 	</form>
-	<p class="text-center">If you already have an account, <a href="/login">login</a> instead.</p>
+	<p class="text-center">Eğer bir hesabınız varsa, bunun yerine <a href="{% url 'todo:login' %}">giriş yapmayı</a> deneyin.</p>
 </div>
 
 {% endblock %}
