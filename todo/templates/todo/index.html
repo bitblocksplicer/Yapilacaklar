@@ -2,7 +2,42 @@
 {% block title %} Anasayfa {% endblock %}
 <body>
     {% block content %}
-    <!--Navbar-->
+
+  <!-- Header -->
+<div class="container">
+    <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+      <a href="/" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-lg" viewBox="0 0 16 16">
+  <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"/>
+</svg>
+      </a>
+
+      <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+        <li><a href="#" class="nav-link px-2 link-secondary">Anasayfa</a></li>
+        <!--
+        <li><a href="#" class="nav-link px-2 link-dark">Features</a></li>
+        <li><a href="#" class="nav-link px-2 link-dark">Pricing</a></li>
+        <li><a href="#" class="nav-link px-2 link-dark">FAQs</a></li>
+        <li><a href="#" class="nav-link px-2 link-dark">About</a></li>
+        -->
+      </ul>
+
+      <div class="col-md-3 text-end">
+        {% if user.is_authenticated %}
+        <a class="nav-link px-2 link-secondary">Hoşgeldiniz, {{user.username}}</a>
+        <a type="button" class="btn btn-outline-primary me-2" href="{% url 'todo:logout' %}">Çıkış Yap</a>
+        
+        {% else %}
+        <a type="button" class="btn btn-outline-primary me-2" href="{% url 'todo:login' %}" >Giriş Yap</a>
+        <a type="button" class="btn btn-primary" href="{% url 'todo:register' %}">Kaydol</a>
+
+        {% endif %}
+      </div>
+    </header>
+  </div>
+
+  <!-- / Header End -->
+    <!--Navbar--><!--
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="#">Yapılacaklar.</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
@@ -34,16 +69,24 @@
         </div>
     </nav>
     
-
+-->
 
   
 {% if user.is_authenticated %}    
     <h1>Yapilacaklar</h1>
     {% if todo_listesi %}
-      <ul>
+      <ul class="list-group">
         {% for yapilacak in todo_listesi %}
-          <li>
-            {{ yapilacak.baslik }}
+          <li class="list-group-item d-flex justify-content-center align-items-start">
+            <div class="ms-2 me-auto">
+              {{ yapilacak.baslik }}
+            </div>
+            <!--{{ yapilacak.tamamlandi }}-->
+            <span class="badge bg-primary rounded-pill ">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-lg" viewBox="0 0 16 16">
+  <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"/>
+</svg>
+            </span>
           </li>
         {% endfor %}
       </ul>

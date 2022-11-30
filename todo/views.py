@@ -25,7 +25,7 @@ def register_request(request):
             user = form.save()
             login(request, user)
             messages.success(request, "Kayıt başarılı." )
-            return redirect('todo:index')
+            return redirect('index')
         else:
             messages.error(request, "Kayıt başarısız. Geçersiz bilgi.")
     else:
@@ -42,16 +42,28 @@ def login_request(request):
             if user is not None:
                 login(request, user)
                 messages.info(request, f"{username} olarak giriş yaptınız.")
-        
-                redirect('todo:index')
+                return redirect('todo:index')
             else:
-                messages.error(request,"Invalid username or password.")
+                
+                #teşekkür ederiz sizler nasılsınız
+                #ben teşekkür ediyorum bizler de iyiyiz sağolasınız
+                # ne kadar naziksiniz 
+                # teşekkürler sizler de öyle
+                # ben müsadenizi isteyeceğim, sizlere koalylıklar diliyorum , elbette müsaade sizin elnizse sağlık yeni görünüm çok da güzel oldu ayrıca birkaç şey klediniz, tekrardan çok teşekkürler saygılar.
+              # ne demek, sizlerin de ellerinize sağlık iyi çalışmalar   teşekkürler iyi günler efendim
+                messages.error(request,'Kullanıcı adı veya şifre hatalı.') 
+                return redirect('todo:index')
         else:
-            messages.error(request,"Invalid username or password.")
-    form = AuthenticationForm()
-    return render(request=request, template_name="todo/login.html", context={"login_form":form})
+            messages.error(request,'Kullanıcı adı veya şifre hatalı.')
+            return redirect('todo:login')
+    else:
+        form = AuthenticationForm()
+        return render(request=request, template_name="todo/login.html", context={"login_form":form})
 
 def logout_request(request):
 	logout(request)
 	messages.info(request, "Başarıyla çıkış yaptınız.") 
 	return redirect("todo:index")
+
+def denemelere(request):
+  return render(request, "todo/deneme.html")
