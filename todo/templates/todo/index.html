@@ -1,12 +1,10 @@
-<!DOCTYPE html>
-<head>
-    {% extends "todo/header.html" %}
-</head>
+{% extends "base.html" %}
+{% block title %} Anasayfa {% endblock %}
 <body>
     {% block content %}
     <!--Navbar-->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">Navbar</a>
+        <a class="navbar-brand" href="#">Yapılacaklar.</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
             aria-controls="navbarText" aria-expanded="False" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -16,10 +14,10 @@
                 {% if user.is_authenticated %}
     
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'todo:register' %}">Logout</a>
+                    <a class="nav-link" href="{% url 'todo:logout' %}">Çıkış Yap</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Welcome, {{user.username}}</a>
+                    <a class="nav-link" href="#">Hoşgeldiniz, {{user.username}}</a>
                 </li>
 
 
@@ -27,19 +25,19 @@
                 {% else %}
     
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'todo:login' %}">Login</a>
+                    <a style="float:right" class="nav-link" href="{% url 'todo:login' %}">Giriş Yap</a>
+                    <a style="float:right" class="nav-link" href="{% url 'todo:register' %}">Kayıt Ol</a>
                 </li>
     
                 {% endif %}
             </ul>
         </div>
     </nav>
-{% endblock %}
+    
 
 
   
-{% if user.is_authenticated %}
-  {% block yapcaklar %}      
+{% if user.is_authenticated %}    
     <h1>Yapilacaklar</h1>
     {% if todo_listesi %}
       <ul>
@@ -52,8 +50,19 @@
     {% else %}
       <p>Yapılacaklar listesi boş.</p>
     {% endif %}
-  
-  {% endblock %}
+{% else %}
+    <div>
+        <br/>
+        <h1>Yapılacaklar Listesi Oluşturun.</h1>
+        <br/>
+        <h2>Basit ve Hızlı.</h2>
+        <br/>
+        <p>Yalnızca hızlı bir üyelikle, sınırsız bir şekilde kendi yapılacaklar listenizi oluşturmaya başlayabilirsiniz.</p>
+        <p>Giriş yapmanız durumunda, listeleriniz tam da burada gözükmeye başlayacak.</p>
+        
 {% endif %}
-  
+    {% endblock %}
 </body>
+<footer>
+    Made by AndylLow & Bitblocksplicer
+<footer/>

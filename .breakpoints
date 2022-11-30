@@ -3,23 +3,23 @@
     "todo/templates/todo/index.html": [
       {
         "id": "49bdebba-b429-485c-bf11-8e12329b3540",
-        "line": 28,
-        "version": 106,
-        "index": 957
+        "line": 23,
+        "version": 442,
+        "index": 958
       }
     ],
     "todo/views.py": [
       {
         "id": "cbba07df-fff5-4cda-a438-572d1a0dc2b4",
-        "line": 43,
-        "version": 867,
-        "index": 1465
+        "line": 45,
+        "version": 1177,
+        "index": 1665
       },
       {
         "id": "0b31b56b-d898-4b79-8792-cdf588eedcb5",
-        "line": 44,
-        "version": 867,
-        "index": 1474
+        "line": 46,
+        "version": 1177,
+        "index": 1674
       }
     ]
   }

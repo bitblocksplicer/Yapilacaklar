@@ -11,5 +11,5 @@ class Todo(models.Model):
       return reverse('model-detail-view', args=[str(self.id)])
 
 
-    def _str_(self):
+    def __str__(self):
         return self.baslik

@@ -19,37 +19,39 @@ def index(request):
     return render(request, template_name, context)
 
 def register_request(request):
-	if request.method == "POST":
-		form = NewUserForm(request.POST)
-		if form.is_valid():
-			user = form.save()
-			login(request, user)
-			messages.success(request, "Kayıt başarılı." )
-			return redirect(index)
-		messages.error(request, "Kayıt başarısız. Geçersiz bilgi.")
-	form = NewUserForm()
-	return render (request=request, template_name="todo/register.html", context={"register_form":form})
+    if request.method == "POST":
+        form = NewUserForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            messages.success(request, "Kayıt başarılı." )
+            return redirect('todo:index')
+        else:
+            messages.error(request, "Kayıt başarısız. Geçersiz bilgi.")
+    else:
+        form = NewUserForm()
+        return render (request=request, template_name="todo/register.html", context={"register_form":form})
 
 def login_request(request):
-	if request.method == "POST":
-		form = AuthenticationForm(request, data=request.POST)
-		if form.is_valid():
-			username = form.cleaned_data.get('username')
-			password = form.cleaned_data.get('password')
-			user = authenticate(username=username, password=password)
-			if user is not None:
-				login(request, user)
-				messages.info(request, f"{username} olarak giriş yaptınız.")
+    if request.method == "POST":
+        form = AuthenticationForm(request, data=request.POST)
+        if form.is_valid():
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password')
+            user = authenticate(username=username, password=password)
+            if user is not None:
+                login(request, user)
+                messages.info(request, f"{username} olarak giriş yaptınız.")
         
-				redirect(index)
-			else:
-				messages.error(request,"Invalid username or password.")
-		else:
-			messages.error(request,"Invalid username or password.")
-	form = AuthenticationForm()
-	return render(request=request, template_name="todo/login.html", context={"login_form":form})
+                redirect('todo:index')
+            else:
+                messages.error(request,"Invalid username or password.")
+        else:
+            messages.error(request,"Invalid username or password.")
+    form = AuthenticationForm()
+    return render(request=request, template_name="todo/login.html", context={"login_form":form})
 
 def logout_request(request):
 	logout(request)
-	messages.info(request, "You have successfully logged out.") 
+	messages.info(request, "Başarıyla çıkış yaptınız.") 
 	return redirect("todo:index")
