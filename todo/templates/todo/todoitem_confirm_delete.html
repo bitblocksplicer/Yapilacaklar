@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h3>Öğeyi Sil</h3>
+
+<p><i>{{ todo_list.title }}</i> adlı listeden <b>{{ object.title }}</b> öğesini silmek istediğinize emin misiniz? ?</p>
+
+<form method="POST">
+    {% csrf_token %}
+    <input
+        value="Evet, silmek istiyorum."
+        type="submit">
+    <input
+        value="Vazgeç"
+        type="button"
+        onclick="location.href='{% url "todo:list" todo_list.id %}';">
+</form>
+
+{% endblock %}

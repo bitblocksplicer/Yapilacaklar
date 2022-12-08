@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h3>{{ title }}</h3>
+<div>
+    <div>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input
+                value="Kaydet"
+                type="submit">
+            <input
+                value="Vazgeç"
+                type="button"
+                onclick="location.href='{% url "todo:index" %}';">
+        </form>
+    </div>
+</div>
+
+{% endblock %}

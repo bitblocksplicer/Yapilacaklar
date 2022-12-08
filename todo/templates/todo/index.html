@@ -7,9 +7,7 @@
 <div class="container">
     <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
       <a href="/" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-lg" viewBox="0 0 16 16">
-  <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"/>
-</svg>
+        
       </a>
 
       <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
@@ -72,27 +70,29 @@
 -->
 
   
-{% if user.is_authenticated %}    
-    <h1 class="d-flex justify-content-center">Yapılacaklar</h1>
-    {% if todo_listesi %}
-      <ul class="list-group">
-        {% for yapilacak in todo_listesi %}
-          <li class="list-group-item d-flex justify-content-center align-items-start">
-            <div class="ms-2 me-auto">
-              {{ yapilacak.baslik }}
-            </div>
-            <!--{{ yapilacak.tamamlandi }}-->
-            <span class="badge bg-primary rounded-pill ">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-lg" viewBox="0 0 16 16">
-  <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"/>
-</svg>
-            </span>
-          </li>
-        {% endfor %}
-      </ul>
-    {% else %}
-      <p>Yapılacaklar listesi boş.</p>
+{% if user.is_authenticated %}   
+    {% if object_list %}
+    <h3>Yapılacaklar Listeleri</h3>
     {% endif %}
+    <ul>
+        {% for todolist in object_list %}
+        <li>
+            <div
+                role="button"
+                onclick="location.href='{% url "todo:list" todolist.id %}'">
+                {{ todolist.title }}
+            </div>
+        </li>
+        {% empty %}
+        <h4>You have no lists!</h4>
+        {% endfor %}
+    </ul>
+    <p>
+    <input
+        value="Yeni bir liste oluştur"
+        type="button"
+        onclick="location.href='{% url "todo:list-add" %}'"/>
+</p>
 {% else %}
     <div>
         <br/>
@@ -105,9 +105,7 @@
         
 {% endif %}
         
-<footer>
-    Made by Andyllow & Bitblocksplicer
-<footer/>
+
     {% endblock %}
 
 </body>

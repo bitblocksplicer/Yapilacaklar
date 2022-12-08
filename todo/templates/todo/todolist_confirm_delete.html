@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!--todolist_confirm_delete.html-->
+
+<h3>Listeyi sil</h3>
+
+<p><i>{{ object.title }}</i> adlı listyi silmek istediğiniden emin misiniz?</p>
+
+<form method="POST">
+    {% csrf_token %}
+    <input
+        value="Evet, silmek istiyorum."
+        type="submit">
+</form>
+<input
+    value="Vazgeç"
+    type="button"
+    onclick="location.href='{% url "todo:index" %}';">
+
+{% endblock %}

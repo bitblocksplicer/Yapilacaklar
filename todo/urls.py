@@ -1,14 +1,35 @@
 from django.urls import path
 from . import views
 
-
 app_name = 'todo'
 
 urlpatterns = [
-    path('', views.index),
-    path('index', views.index, name='index'),
+    path('', views.ListListView.as_view(), name="index"),
+    path('index', views.ListListView.as_view()),
     path("login", views.login_request, name="login"),
     path("register", views.register_request, name="register"),
-    path("logout", views.logout_request, name= "logout"),
+    path("logout", views.logout_request, name="logout"),
+    path("list/<int:list_id>/", views.ItemListView.as_view(), name="list"),
     #path("deneme", views.denemelere)
-] 
+    # CRUD patterns for ToDoLists
+    path("list/add/", views.ListCreate.as_view(), name="list-add"),
+    # CRUD patterns for ToDoItems
+    path(
+        "list/<int:list_id>/item/add/",
+        views.ItemCreate.as_view(),
+        name="item-add",
+    ),
+    path(
+         "list/<int:list_id>/item/<int:pk>/",
+        views.ItemUpdate.as_view(),
+        name="item-update",
+    ),
+    path(
+        "list/<int:pk>/delete/", views.ListDelete.as_view(), name="list-delete"
+    ),
+    path(
+        "list/<int:list_id>/item/<int:pk>/delete/",
+        views.ItemDelete.as_view(),
+        name="item-delete",
+    ),
+]
