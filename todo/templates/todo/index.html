@@ -73,7 +73,7 @@
 
   
 {% if user.is_authenticated %}    
-    <h1>Yapilacaklar</h1>
+    <h1 class="d-flex justify-content-center">Yapılacaklar</h1>
     {% if todo_listesi %}
       <ul class="list-group">
         {% for yapilacak in todo_listesi %}
@@ -104,8 +104,10 @@
         <p>Giriş yapmanız durumunda, listeleriniz tam da burada gözükmeye başlayacak.</p>
         
 {% endif %}
-    {% endblock %}
-</body>
+        
 <footer>
-    Made by AndylLow & Bitblocksplicer
+    Made by Andyllow & Bitblocksplicer
 <footer/>
+    {% endblock %}
+
+</body>

@@ -6,6 +6,7 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib import messages
 from .models import Todo
 from django.template import loader
+from django.views.generic import (ListView,CreateView,UpdateView)
 
 
 # Create your views here.
@@ -25,7 +26,7 @@ def register_request(request):
             user = form.save()
             login(request, user)
             messages.success(request, "Kayıt başarılı." )
-            return redirect('index')
+            return redirect('todo:index')
         else:
             messages.error(request, "Kayıt başarısız. Geçersiz bilgi.")
     else:
@@ -44,13 +45,6 @@ def login_request(request):
                 messages.info(request, f"{username} olarak giriş yaptınız.")
                 return redirect('todo:index')
             else:
-                
-                #teşekkür ederiz sizler nasılsınız
-                #ben teşekkür ediyorum bizler de iyiyiz sağolasınız
-                # ne kadar naziksiniz 
-                # teşekkürler sizler de öyle
-                # ben müsadenizi isteyeceğim, sizlere koalylıklar diliyorum , elbette müsaade sizin elnizse sağlık yeni görünüm çok da güzel oldu ayrıca birkaç şey klediniz, tekrardan çok teşekkürler saygılar.
-              # ne demek, sizlerin de ellerinize sağlık iyi çalışmalar   teşekkürler iyi günler efendim
                 messages.error(request,'Kullanıcı adı veya şifre hatalı.') 
                 return redirect('todo:index')
         else:
