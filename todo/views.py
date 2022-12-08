@@ -102,8 +102,12 @@ class ListCreate(CreateView):
 
 class ItemCreate(CreateView):
     model = ToDoItem
-    fields = '__all__'
-
+    fields = [
+            "todo_list",
+            "title",
+            "description",
+            "due_date",
+        ]
     def get_initial(self):
         initial_data = super(ItemCreate, self).get_initial()
         todo_list = ToDoList.objects.get(id=self.kwargs["list_id"])
