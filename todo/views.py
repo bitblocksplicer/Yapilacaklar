@@ -7,6 +7,7 @@ from .models import Todo, ToDoList, ToDoItem
 from django.template import loader
 from django.views.generic import (ListView, CreateView, UpdateView, DeleteView)
 from django.urls import reverse, reverse_lazy
+from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
@@ -103,11 +104,12 @@ class ListCreate(CreateView):
 class ItemCreate(CreateView):
     model = ToDoItem
     fields = [
-            "todo_list",
-            "title",
-            "description",
-            "due_date",
-        ]
+        "todo_list",
+        "title",
+        "description",
+        "due_date",
+    ]
+
     def get_initial(self):
         initial_data = super(ItemCreate, self).get_initial()
         todo_list = ToDoList.objects.get(id=self.kwargs["list_id"])
